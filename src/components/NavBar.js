@@ -1,21 +1,16 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink
-} from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Navbar, Nav, NavItem, Container } from 'react-bootstrap'
 import Home from './Home'
 import Books from './Books'
 import Contact from './Contact'
 
+const Styles = ({ isActive }) => ({
+  fontWeight: isActive ? 'bold' : 'normal',
+  textDecoration: isActive ? 'none' : 'italic'
+})
+
 function NavBar() {
-  const Styles = ({ isActive }) => {
-    return {
-      fontWeight: isActive ? 'bold' : 'normal',
-      textDecoration: isActive ? 'none' : 'italic'
-    }
-  }
   return (
     <Router>
       <div>
@@ -24,10 +19,10 @@ function NavBar() {
             <Navbar.Brand
               className="logo"
               style={{ fontSize: '1.8rem', marginLeft: '-225px' }}
-              href="#home"
+              href="/"
             >
               <img
-                src={'../.././images/logo.png'}
+                src="../.././images/logo.png"
                 alt=""
                 style={{ width: '300px', height: '80px' }}
               />
@@ -35,21 +30,36 @@ function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
-                <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/">
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/"
+                    style={Styles}
+                    className="nav-link"
+                  >
                     Home
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/books">
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/books"
+                    style={Styles}
+                    className="nav-link"
+                  >
                     Albums
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/contact">
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    as={Link}
+                    to="/contact"
+                    style={Styles}
+                    className="nav-link"
+                  >
                     Contact
-                  </NavLink>
-                </NavItem>
+                  </Nav.Link>
+                </Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Container>
